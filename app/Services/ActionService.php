@@ -30,17 +30,19 @@ class ActionService
 		if(!$point){
 			return $this->utils->errorMessage('下注失败');
 		}
-		// $arr=array('name' =>$obj->get('name'),
-		// 			'money'=>$obj->get('money'),
-		// 			'multiple'=>$obj->get('multiple'),
-		// 			'action'=>$obj->get('action')
-		// );
 		$model=$this->action->create($obj);
 		if($model&&$point){
 		 	return $this->utils->successMessage('下注成功',$point);
 		}else{
 			return $this->utils->errorMessage('下注失败');
 		}
+	}
+	public function getAll($obj){
+		if(empty($obj)){
+			return false;
+		}
+		$ac=$this->action->getAll($obj);
+		return $this->utils->successMessage('成功',$ac);
 	}
 
 }

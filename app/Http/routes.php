@@ -30,6 +30,7 @@ $api->version('v1', ['namespace'=>'App\Http\Controllers','middleware' => 'cors']
 			$api->get('/getCode','UserController@getCode');
 			$api->get('/getHistory','CathecticController@getPlay');
 			$api->get('/getAnarchy','SystemController@getAnarchy');
+			$api->get('/getNum','ActionController@getIndexNum');
 		});
 });
 

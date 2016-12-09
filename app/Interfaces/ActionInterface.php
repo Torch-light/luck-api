@@ -42,4 +42,10 @@ class ActionInterface implements BaseActionInterface
     public function update($obj){
        
     }
+
+    public function getAll($obj){
+         $dd=$this->getModel();
+        $date=$dd::where('num',$obj['num'])->get(['id','name','action','money','created_at']);
+        return $date;
+    }
 }

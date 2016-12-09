@@ -16,4 +16,9 @@ class ActionController extends Controller
     	$model=$this->action->create($request);
     	return $model;
     }
+
+    public function getIndexNum(Request $request){
+    	$model=$this->action->getAll($request);
+    	return $model;
+    }
 }
