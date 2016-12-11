@@ -4,6 +4,7 @@ use App\Interfaces\BaseUserInterface;
 use App\Interfaces\BaseCodeInterface;
 use App\Helps\Utils;
 use JWTAuth;
+use Illuminate\Support\Facades\Redis;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Crypt;
 /**
@@ -27,6 +28,14 @@ class UserService
 
 	public  function getToken($obj){
 	
+			//将用户名存储到Redis中
+		// 	Redis::set('$key','$user->name');
+		
+		// //判断指定键是否存在
+		// if(Redis::exists('$key')){
+		// 	//根据键名获取键值
+		// 	dd(Redis::get('$key'));
+		// }
 		$name=$obj->get('name');
 		$password=$obj->get('password');
 		if(empty($name)){
@@ -44,6 +53,7 @@ class UserService
 				$res['RoleId']=$model->role_id;
 				$res['UserName']=$model->name;
 				$res['Id']=$model->id;
+				$res['mark']=$model->mark;
 				return $this->message->successMessage("登录成功",$res);
 		}else{
 				return $this->message->errorMessage("密码错误");
@@ -52,7 +62,7 @@ class UserService
 	
 
 	public  function addCode($obj){
-		if($obj->get('roleId')!=1){
+		if($obj->get('roleId')>2){
 			return "你没有权限";
 		};
 		$model=$this->user->find($obj);	
@@ -79,7 +89,7 @@ class UserService
 	public function register($obj){
 		$user=$this->user->find($obj);
 		$code=$this->code->getOnceCode($obj);
-
+		
 		if(empty($code)){
 			return $this->message->errorMessage('验证码无效'); 
 		};
@@ -103,6 +113,29 @@ class UserService
 			return $this->message->errorMessage('下注失败');
 		}else{
 			return $model;
+		}
+	}
+
+	public function getAll($obj){
+		$model=$this->user->getAll($obj);
+		if($model){
+			 return $this->message->successMessage('获取成功',$model);
+		}else{
+			return $this->message->errorMessage('获取失败');
+		}
+
+	}
+
+	public function seeting($obj){
+		$role_id=$obj['role_id'];
+		if($role_id>1){
+			return $this->message->errorMessage('没有权限');
+		}
+		$model=$this->user->settingUser($obj);
+		if($model){
+			 return $this->message->successMessage('设置成功',$model);
+		}else{
+			return $this->message->errorMessage('设置失败');
 		}
 	}
 }

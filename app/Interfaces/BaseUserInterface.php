@@ -12,5 +12,6 @@ Interface BaseUserInterface
     public function create($obj);
     public function getUsers($obj);
     public function register($obj,$code);
+    public function getAll($obj);
 
 }

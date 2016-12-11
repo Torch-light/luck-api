@@ -45,6 +45,15 @@ class UserController extends Controller
           return $model;
         
     }
+    public function getAll(Request $request){
+           $model=$this->user->getAll($request);
+           return $model;
+        
+    }
+    public function seeting(Request $request){
+          $model=$this->user->seeting($request);
+           return $model;
+    }
 }
 
 

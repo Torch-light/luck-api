@@ -18,11 +18,16 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-         JWTAuth::parseToken();// and you can continue to chain methods
+         // JWTAuth::parseToken();// and you can continue to chain methods
         $user = JWTAuth::parseToken()->authenticate();
+        $request['role_id']=$user['role_id'];
+        $request['mark']=$user['mark'];
+        $request['name']=$user['name'];
+        $request['id']=$user['id'];
         if(empty($user)){
             return 'token无效';
         }
+        // $request
         // var_dump(expression) $user;
     // the token is valid and we have found the user via the sub claim
     // return response()->json(compact('user'));

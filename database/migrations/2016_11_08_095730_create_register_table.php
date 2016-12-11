@@ -14,7 +14,7 @@ class CreateRegisterTable extends Migration
     {
         //
          Schema::create('code', function (Blueprint $table) {
-            $table->string('name');
+            $table->integer('id')->comment('生成人id');
             $table->string('code')->unique()->comment('邀请码');
             $table->boolean('iscode')->default(false)->comment('是否验证通过');
            

@@ -22,12 +22,14 @@ class CathecticInterface implements BaseCathecticInterface
 
 	public function find($obj)
 	{
-			$dd=$this->getModel();
+		$dd=$this->getModel();
+		if(!empty($obj['stime'])){
+			$date=$dd::where([])->limit(10)->orderBy('id','desc')->get();
+		}else{
 			$date=$dd::orderBy('id','desc')->first();
-			// $date=$dd::where('created_at','>=',$obj['stime'])
-			// ->first();
-			
-			 return $date;
+		}
+
+		return $date;
 	}
 
 	public function delete($obj)
@@ -37,19 +39,12 @@ class CathecticInterface implements BaseCathecticInterface
 
 	public function update($obj)
 	{
-		$bol=$this->getModel()::where('phone',$obj['phone'])
-				  ->update(['code'=>$obj['code'],
-							'iscode'=>$obj['iscode']]);
-					return $bol;
+		
 	}
 
 	public function create($code)
 	{
-		$name=$obj['name'];
-		foreach ($code as $value) {
-			$this->getModel()::create(['name'=>$name,'code'=>$value]);
-		}
-		return true;
+		
 	}
 
 

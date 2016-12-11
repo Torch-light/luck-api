@@ -4,7 +4,7 @@ namespace App\Services;
 use App\Helps\Utils;
 use App\Interfaces\BaseRechargeInterface;
 use App\Interfaces\BaseUserInterface;
-
+use App\Services\EventService;
 /**
 * 
 */
@@ -14,14 +14,17 @@ class RechargeService
 	protected $utils;
 	protected $user;
 	protected $users;
+	protected $event;
 	function __construct(BaseRechargeInterface $recharge,
 							Utils $utils,
-							BaseUserInterface $user
+							BaseUserInterface $user,
+							EventService $event
 							)
 	{
 		$this->recharge=$recharge;
 		$this->utils=$utils;
-		$this->user=$user;		
+		$this->user=$user;
+		$this->event=$event;		
 	}
 
 	public function create($obj){
@@ -31,9 +34,12 @@ class RechargeService
 		$arr=array('name' =>$obj->get('name'),
 					'money'=>$obj->get('money'),
 					'uid'=>$obj->get('uid'),
+					'mark'=>$obj['mark'],
 		);
+
 		$model=$this->recharge->create($arr);
 		if($model){
+			$this->event->rechange($arr['uid'],$arr['uid']);
 		 	return $this->utils->successMessage('提交成功,请往管理员账户打款');
 		}else{
 			return $this->utils->errorMessage('提交失败');

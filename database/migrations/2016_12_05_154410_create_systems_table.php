@@ -16,6 +16,7 @@ class CreateSystemsTable extends Migration
         Schema::create('system',function(Blueprint $table){
             $table->boolean('updateNum');
             $table->boolean('updatePoints');
+            $table->integer('id');
         });
     }
 

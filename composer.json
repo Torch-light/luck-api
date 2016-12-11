@@ -10,7 +10,8 @@
         "tymon/jwt-auth": "0.5.*",
         "doctrine/dbal": "^2.5",
          "dingo/api": "1.0.x@dev",
-         "tymon/jwt-auth": "0.5.*"
+         "tymon/jwt-auth": "0.5.*",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

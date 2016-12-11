@@ -17,6 +17,7 @@ class CreatRechargeTable extends Migration
             $table->bigIncrements('id');
             $table->integer('uid');
             $table->string('name');
+            $table->string('mark');
             $table->integer('money');
             $table->timestamps();
             $table->softDeletes();

@@ -68,10 +68,44 @@ class UserInterface implements BaseUserInterface
         $user=new Users;
         $user->name=$obj['name'];
         $user->password=Crypt::encrypt($obj['password']);
-        $user->mark=$code['name'];
+        $user->mark=$code['id'];
         $user->role_id=10;
         $bol=$user->save();
         return $bol;
     }
+
+    public function getAll($obj){
+        $role_id=$obj['role_id'];
+        $name=$obj['name'];
+        switch($role_id){
+            case 0:
+            $model=$this->getModel()::where('role_id','>',$role_id)->get(['id','name','points','role_id']);
+            break;
+            case 1:
+            $model=$this->getModel()::where('role_id','>',$role_id)->get(['id','name','points','role_id']);
+            break;
+            case 2:
+            $model=$this->getModel()::where('mark',$name)->get(['id','name','points','role_id']);
+            break;
+            default:
+            $model=$this->getModel()::where('role_id',$role_id)->get(['id','name','points','role_id']);
+            break;
+        }
+        if(!empty($model)){
+         return $model;
+        }else{
+             return false;
+        }
+    }
+
+    public function settingUser($obj){
+        $_role_id=$obj['_roleid'];
+        $model=$this->getModel()::find($obj['_id']);
+        $model->role_id=$_role_id;
+        $bol=$model->save();
+        return $bol; 
+
+    }
+
    
 }

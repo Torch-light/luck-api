@@ -42,24 +42,25 @@ class CodeInterface implements BaseCodeInterface
 
 	public function create($code,$obj)
 	{
-		$name=$obj['name'];
 		foreach ($code as $value) {
-			$this->getModel()::create(['name'=>$name,'code'=>$value]);
+			$this->getModel()::create(['id'=>$obj['id'],'code'=>$value]);
 		}
 		return true;
 	}
 
 	public function getCode($obj)
 	{
-        $model=$this->getModel()::where(['name'=>$obj['name'],'iscode'=>0])
+		
+        $model=$this->getModel()::where(['id'=>$obj['id'],'iscode'=>0])
         ->get(['code']);
         return $model;
     }
 
     public function getOnceCode($obj)
     {
+    	
     	 $model=$this->getModel()::where(['code'=>$obj['code'],'iscode'=>0])
-        ->first(['code','name']);
+        ->first(['code','id']);
         return $model;
     }
 

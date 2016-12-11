@@ -10,5 +10,7 @@ Interface BaseActionInterface
     public function delete($obj);
     public function create($obj);
     public function getAll($obj);
+    public function delaction($obj);
+    public function getaction();
 
 }

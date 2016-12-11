@@ -18,6 +18,7 @@ class CreateActionTable extends Migration
             $table->string('name')->comment('下注人');
             $table->string('num')->comment('当前期数');
             $table->string('money')->comment('金额');
+            $table->boolean('prize')->comment('是否中奖');
             $table->string('action')->comment('下注类型');
             $table->integer('multiple')->comment('倍数');
             $table->timestamps();

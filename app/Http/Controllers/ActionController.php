@@ -21,4 +21,18 @@ class ActionController extends Controller
     	$model=$this->action->getAll($request);
     	return $model;
     }
+
+    public function delaction(Request $request){
+        $model=$this->action->delaction($request);
+        return $model;
+    }
+    public function getaction(Request $request){
+         $model=$this->action->getaction($request);
+        return $model;
+    }
+
+    public function event(Request $request){
+        $this->action->event();
+    
+    }
 }
