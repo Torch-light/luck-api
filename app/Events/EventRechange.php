@@ -26,6 +26,7 @@ class EventRechange extends Event implements ShouldBroadcast
 
         $this->message = $message;
         $this->channel = $channel;
+     
     }
     /**
      * Get the channels the event should be broadcast on.
@@ -39,7 +40,6 @@ class EventRechange extends Event implements ShouldBroadcast
 
      public function broadcastWith() 
      {
-      	echo $this->channel;
        return ['message' => $this->message,'channel'=>$this->channel];
      }
     /**

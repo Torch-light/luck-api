@@ -76,7 +76,7 @@ class UserInterface implements BaseUserInterface
 
     public function getAll($obj){
         $role_id=$obj['role_id'];
-        $name=$obj['name'];
+        $name=$obj['id'];
         switch($role_id){
             case 0:
             $model=$this->getModel()::where('role_id','>',$role_id)->get(['id','name','points','role_id']);

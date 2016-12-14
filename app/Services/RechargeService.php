@@ -39,8 +39,8 @@ class RechargeService
 
 		$model=$this->recharge->create($arr);
 		if($model){
-			$this->event->rechange($arr['uid'],$arr['uid']);
-		 	return $this->utils->successMessage('提交成功,请往管理员账户打款');
+			$this->event->rechange($arr['uid'],$arr['mark']);
+		 	return $this->utils->successMessage('提交成功,请等待审核');
 		}else{
 			return $this->utils->errorMessage('提交失败');
 		}

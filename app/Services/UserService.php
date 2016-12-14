@@ -27,15 +27,6 @@ class UserService
 	}
 
 	public  function getToken($obj){
-	
-			//将用户名存储到Redis中
-		// 	Redis::set('$key','$user->name');
-		
-		// //判断指定键是否存在
-		// if(Redis::exists('$key')){
-		// 	//根据键名获取键值
-		// 	dd(Redis::get('$key'));
-		// }
 		$name=$obj->get('name');
 		$password=$obj->get('password');
 		if(empty($name)){
@@ -48,16 +39,23 @@ class UserService
 		if(empty($model)){
 			return $this->message->errorMessage("用户名不存在");
 		};
-		if($password==Crypt::decrypt($model->password)){
-				$res['Token'] = JWTAuth::fromUser($model);
-				$res['RoleId']=$model->role_id;
-				$res['UserName']=$model->name;
-				$res['Id']=$model->id;
-				$res['mark']=$model->mark;
-				return $this->message->successMessage("登录成功",$res);
-		}else{
-				return $this->message->errorMessage("密码错误");
-		};
+		try 
+			{ 
+			if($password==Crypt::decrypt($model->password)){
+							$res['Token'] = JWTAuth::fromUser($model);
+							$res['RoleId']=$model->role_id;
+							$res['UserName']=$model->name;
+							$res['Id']=$model->id;
+							$res['mark']=$model->mark;
+							return $this->message->successMessage("登录成功",$res);
+					}else{
+							return $this->message->errorMessage("密码错误");
+					};} 
+			catch(Exception $e) 
+			{
+				echo json_encode($e);
+			 }
+		
 	}	
 	
 

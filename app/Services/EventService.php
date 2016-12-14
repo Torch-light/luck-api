@@ -25,6 +25,7 @@ class EventService
 
 	public function rechange($user,$channel){
 		$this->user=$user;
+		$this->channel='recharge-'.$channel;
 		Event::fire(new EventRechange($this->user,$this->channel));
 	}
 

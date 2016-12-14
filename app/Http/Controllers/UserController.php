@@ -19,7 +19,7 @@ class UserController extends Controller
       
     }
     public function login(Request $request){
-      
+         
           $model=$this->user->getToken($request);
           return $model;
     }
