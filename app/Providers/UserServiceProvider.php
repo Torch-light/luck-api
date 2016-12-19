@@ -15,6 +15,8 @@ use App\Interfaces\BaseCathecticInterface;
 use App\Interfaces\CathecticInterface;
 use App\Interfaces\BaseSystemInterface;
 use App\Interfaces\SystemInterface;
+use App\Interfaces\BaseCashInterface;
+use App\Interfaces\CashInterface;
 
 class UserServiceProvider extends ServiceProvider
 {
@@ -50,6 +52,7 @@ class UserServiceProvider extends ServiceProvider
      $this->app->bind(BaseRechargeInterface::class,RechargeInterface::class);
       $this->app->bind(BaseCathecticInterface::class,CathecticInterface::class);
        $this->app->bind(BaseSystemInterface::class,SystemInterface::class);
+       $this->app->bind(BaseCashInterface::class,CashInterface::class);
      // $this->app->bind('UserService',function(){
      //    return new UserInterface();
      //  });

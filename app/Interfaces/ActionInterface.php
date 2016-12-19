@@ -74,9 +74,9 @@ class ActionInterface implements BaseActionInterface
           return $de;
     }
 
-    public function getaction(){
+    public function getaction($obj){
          $dd=$this->getModel();
-        $date=$dd::where([])
+        $date=$dd::where(['name'=>$obj['name']])
         ->limit(10)
         ->orderBy('created_at','desc')
         ->get(['action','money','multiple','num','created_at','prize']);

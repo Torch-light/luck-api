@@ -32,6 +32,11 @@ $api->version('v1', ['namespace'=>'App\Http\Controllers','middleware' => 'cors']
 			$api->post('/seeting','UserController@seeting');
 			$api->post('/delaction','ActionController@delaction');
 			$api->get('/action','ActionController@getaction');
+			$api->post('/cash','CashController@addcash');
+			$api->get('/getcash','CashController@getcash');
+			$api->post('/setcash','CashController@setcash');
+			$api->get('/getRechange','RechargeController@getRechange');
+			$api->post('/delChange','RechargeController@delChange');
 			
 
 		});

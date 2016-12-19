@@ -66,8 +66,8 @@ class ActionService
 		}
 	}
 
-	public function getaction(){
-		$data=$this->action->getaction();
+	public function getaction($obj){
+		$data=$this->action->getaction($obj);
 		return $this->utils->successMessage('成功',$data);	
 	}
 

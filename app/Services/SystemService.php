@@ -21,10 +21,14 @@ class SystemService
 
 	public function getAnarchy(){
 		$model=$this->service->find();
+
 		if(empty($model)){
 			return $this->utils->errorMessage('失败');
 		}else{
-			return $this->utils->successMessage('成功',$model);
+			$arr=array('updateNum'=>$model['updateNum'],
+				'updatePoints'=>$model['updatePoints'],
+				'time'=>date('i'));
+			return $this->utils->successMessage('成功',$arr);
 		}
 	}
 

@@ -4,6 +4,7 @@ namespace App\Services;
 use Illuminate\Support\Facades\Event;
 use App\Events\EventBoradcast;
 use App\Events\EventRechange;
+use App\Events\EventCash;
 /**
 * 
 */
@@ -28,5 +29,9 @@ class EventService
 		$this->channel='recharge-'.$channel;
 		Event::fire(new EventRechange($this->user,$this->channel));
 	}
-
+	public function cash($user,$channel){
+		$this->user=$user;
+		$this->channel='cash-'.$channel;
+		Event::fire(new EventCash($this->user,$this->channel));
+	}
 }

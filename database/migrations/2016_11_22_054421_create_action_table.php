@@ -21,6 +21,7 @@ class CreateActionTable extends Migration
             $table->boolean('prize')->comment('是否中奖');
             $table->string('action')->comment('下注类型');
             $table->integer('multiple')->comment('倍数');
+            $table->integer('mark')->comment('邀请人');
             $table->timestamps();
             $table->softDeletes();
         });

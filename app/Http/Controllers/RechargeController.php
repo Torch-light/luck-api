@@ -27,4 +27,14 @@ class RechargeController extends Controller
         $model=$this->recharge->update($request);
         return $model;
     }
+
+    public function getRechange(Request $request){
+        $model=$this->recharge->getRechange($request);
+        return $model;
+    }
+
+    public function delChange(Request $request){
+        $model=$this->recharge->delChange($request);
+        return $model;
+    }
 }

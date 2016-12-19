@@ -1,13 +1,13 @@
 <?php
 namespace App\Interfaces;
 
-Interface BaseRechargeInterface
+Interface BaseCashInterface
 {
 
     public function getModel();
-    public function find($obj);
+    public function addcash($obj);
     public function update($obj);
     public function delete($obj);
-    public function create($obj);
-    public function delChange($obj);
+    public function getall($obj);
+
 }

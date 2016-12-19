@@ -33,10 +33,15 @@ class UserInterface implements BaseUserInterface
     public function create($obj){
        
     }
-    public function updatePoints($obj){
+    public function updatePoints($obj,$type=1){
        
+            if($type==1){
             $model=$this->getModel()::find($obj['uid']);
             $model->points=$model->points+$obj['money'];
+            }else{
+            $model=$this->getModel()::find($obj['id']);
+            $model->points=$model->points-$obj['money'];    
+            }
             $bol=$model->save();
             return $bol;
         
@@ -107,5 +112,10 @@ class UserInterface implements BaseUserInterface
 
     }
 
+    public function onceData($id,$string){
+
+          $model=$this->getModel()::where('id',$id)->get([$string]);
+          return $model;
+    }
    
 }

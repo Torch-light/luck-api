@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatRechargeTable extends Migration
+class CreateCashTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreatRechargeTable extends Migration
     public function up()
     {
         //
-          Schema::create('recharge',function(Blueprint $table){
+        Schema::create('cash',function(Blueprint $table){
             $table->bigIncrements('id');
             $table->integer('uid');
+            $table->string('number');
             $table->string('name');
-            $table->string('mark');
             $table->integer('money');
-            $table->boolean('ispass');
+            $table->integer('cashtype');
+            $table->integer('mark');
             $table->timestamps();
             $table->softDeletes();
         });
